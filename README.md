@@ -86,7 +86,7 @@ The token is composed of a header, a payload, and a signature with periods (.) s
 
 * Access a resource with header parameter : 
 
-        $ curl localhost:8080?name=Arip -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYXJpcF9oaWRheWF0Il0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU0MTQzMjk4NCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI0NWU1NzllMi01YmNmLTRkODctOWM2OC0wZmU1NjM3Yjc5ZTEiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.8Vkpi3IpTDV3uaOdbXmVWalyeaiu-h25eL0FltZQ5f8"
+        $ curl localhost:8080/user -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYXJpcF9oaWRheWF0Il0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU0MTQzMjk4NCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI0NWU1NzllMi01YmNmLTRkODctOWM2OC0wZmU1NjM3Yjc5ZTEiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.8Vkpi3IpTDV3uaOdbXmVWalyeaiu-h25eL0FltZQ5f8"
 
 * Application will give JSON response :
 
@@ -98,7 +98,6 @@ The token is composed of a header, a payload, and a signature with periods (.) s
 
 > Since JWT are signed and encoded only, and since JWT are not encrypted, JWT do not guarantee any security for 
 > sensitive data.
-
 
 > It should also be noted that JWT should be sent over HTTPS connections. Having HTTPS helps prevents unauthorized 
 > users from stealing the sent JWT by making it so that the communication between the servers and the user cannot be 
