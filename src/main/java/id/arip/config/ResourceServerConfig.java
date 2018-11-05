@@ -1,6 +1,7 @@
 package id.arip.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,13 +18,16 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    @Value("${jwt.client-id}")
+    private String clientId;
+
     @Autowired
     private ResourceServerTokenServices tokenServices;
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources
-            .resourceId("arip_hidayat")
+            .resourceId(clientId)
             .tokenServices(tokenServices);
     }
 

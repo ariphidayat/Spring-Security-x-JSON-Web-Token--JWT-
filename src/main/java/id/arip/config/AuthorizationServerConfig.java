@@ -1,6 +1,7 @@
 package id.arip.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +18,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+    @Value("${jwt.client-id}")
+    private String clientId;
 
     @Autowired
     private JwtAccessTokenConverter accessTokenConverter;
@@ -46,6 +50,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(passwordEncoder.encode("s3cret"))
                 .authorizedGrantTypes("password")
                 .scopes("read", "write")
-                .resourceIds("arip_hidayat");
+                .resourceIds(clientId);
     }
 }
