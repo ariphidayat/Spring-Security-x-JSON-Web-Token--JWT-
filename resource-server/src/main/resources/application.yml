@@ -1,0 +1,6 @@
+server:
+  port: 8081
+
+jwt:
+  resource-id: arip
+  signing-key: k3y

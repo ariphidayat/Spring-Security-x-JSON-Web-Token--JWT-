@@ -1,0 +1,3 @@
+jwt:
+  resource-ids: arip, alisiana
+  signing-key: k3y

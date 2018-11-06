@@ -19,8 +19,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Value("${jwt.client-id}")
-    private String clientId;
+    @Value("${jwt.resource-ids}")
+    private String[] resourceIds;
 
     @Autowired
     private JwtAccessTokenConverter accessTokenConverter;
@@ -50,6 +50,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(passwordEncoder.encode("s3cret"))
                 .authorizedGrantTypes("password")
                 .scopes("read", "write")
-                .resourceIds(clientId);
+                .resourceIds(resourceIds);
     }
 }

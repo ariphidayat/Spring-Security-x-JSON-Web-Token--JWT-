@@ -1,5 +1,6 @@
 package id.arip.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +26,9 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${jwt.signing-key}")
+    private String signingKey;
+
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
@@ -38,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .httpBasic()
-            .realmName("Arip Hidayat")
             .and()
             .csrf().disable();
     }
@@ -51,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("k3y");
+        converter.setSigningKey(signingKey);
         return converter;
     }
 

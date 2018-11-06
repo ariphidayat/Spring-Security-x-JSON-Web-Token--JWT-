@@ -43,7 +43,7 @@ The token is composed of a header, a payload, and a signature with periods (.) s
         }
             
 *   **Payload**, which contains the claims. Claims are statements about an entity (typically, the user) and 
-    additional metadata. For example the authorization server creates a JWT with username information stored inside it.
+    additional metadata. For example the authorization server creates a JWT with user information stored inside it.
     
     
         {
@@ -67,11 +67,19 @@ The token is composed of a header, a payload, and a signature with periods (.) s
 
 ## Run Application
 
+* authorization-server
+
         $ mvn spring-boot:run
+
+
+* resource-server
+
+        $ mvn spring-boot:run
+
 
 ## How Application Works
 
-* Request access token : 
+* Request access token at `authorization-server` : 
 
         $ curl client:s3cret@localhost:8080/oauth/token -d grant_type=password -d username=user -d password=passw0rd 
 
@@ -84,9 +92,9 @@ The token is composed of a header, a payload, and a signature with periods (.) s
 		    "jti":"45e579e2-5bcf-4d87-9c68-0fe5637b79e1"
 		}
 
-* Access a resource with header parameter : 
+* Access a resource at `resource-server` with header parameter : 
 
-        $ curl localhost:8080/user -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYXJpcF9oaWRheWF0Il0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU0MTQzMjk4NCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI0NWU1NzllMi01YmNmLTRkODctOWM2OC0wZmU1NjM3Yjc5ZTEiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.8Vkpi3IpTDV3uaOdbXmVWalyeaiu-h25eL0FltZQ5f8"
+        $ curl localhost:8081/user -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiYXJpcF9oaWRheWF0Il0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTU0MTQzMjk4NCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI0NWU1NzllMi01YmNmLTRkODctOWM2OC0wZmU1NjM3Yjc5ZTEiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.8Vkpi3IpTDV3uaOdbXmVWalyeaiu-h25eL0FltZQ5f8"
 
 * Application will give JSON response :
 
